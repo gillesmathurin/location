@@ -1,0 +1,43 @@
+<p>
+  <b>Nom:</b>
+  <%=h @customer.nom %>
+</p>
+
+<p>
+  <b>Prenom:</b>
+  <%=h @customer.prenom %>
+</p>
+
+<p>
+  <b>Adresse:</b>
+  <%=h @customer.adresse %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%=h @customer.zip %>
+</p>
+
+<p>
+  <b>Ville:</b>
+  <%=h @customer.ville %>
+</p>
+
+<p>
+  <b>Telephone:</b>
+  <%=h @customer.telephone %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @customer.email %>
+</p>
+
+<p>
+  <b>Fax:</b>
+  <%=h @customer.fax %>
+</p>
+
+
+<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= link_to 'Back', customers_path %>

@@ -1,0 +1,28 @@
+<h1>Editing location</h1>
+
+<% form_for(@location) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :house_id %><br />
+    <%= f.text_field :house_id %>
+  </p>
+  <p>
+    <%= f.label :date_debut %><br />
+    <%= f.date_select :date_debut %>
+  </p>
+  <p>
+    <%= f.label :date_fin %><br />
+    <%= f.date_select :date_fin %>
+  </p>
+  <p>
+    <%= f.label :customer_id %><br />
+    <%= f.text_field :customer_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @location %> |
+<%= link_to 'Back', locations_path %>

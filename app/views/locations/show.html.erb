@@ -1,0 +1,23 @@
+<p>
+  <b>House:</b>
+  <%=h @location.house_id %>
+</p>
+
+<p>
+  <b>Date debut:</b>
+  <%=h @location.date_debut %>
+</p>
+
+<p>
+  <b>Date fin:</b>
+  <%=h @location.date_fin %>
+</p>
+
+<p>
+  <b>Customer:</b>
+  <%=h @location.customer_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>

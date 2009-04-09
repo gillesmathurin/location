@@ -1,0 +1,18 @@
+<p>
+  <b>Days nb:</b>
+  <%=h @tarif.days_nb %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%=h @tarif.price %>
+</p>
+
+<p>
+  <b>Nom:</b>
+  <%=h @tarif.nom %>
+</p>
+
+
+<%= link_to 'Edit', edit_tarif_path(@tarif) %> |
+<%= link_to 'Back', tarifs_path %>

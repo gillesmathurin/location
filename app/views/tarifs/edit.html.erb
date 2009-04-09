@@ -1,0 +1,24 @@
+<h1>Editing tarif</h1>
+
+<% form_for(@tarif) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :days_nb %><br />
+    <%= f.text_field :days_nb %>
+  </p>
+  <p>
+    <%= f.label :price %><br />
+    <%= f.text_field :price %>
+  </p>
+  <p>
+    <%= f.label :nom %><br />
+    <%= f.text_field :nom %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @tarif %> |
+<%= link_to 'Back', tarifs_path %>

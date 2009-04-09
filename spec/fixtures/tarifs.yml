@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  days_nb: 1
+  price: 9.99
+  nom: MyString
+
+two:
+  days_nb: 1
+  price: 9.99
+  nom: MyString

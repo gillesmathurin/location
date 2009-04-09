@@ -1,0 +1,33 @@
+<p>
+  <b>Nom:</b>
+  <%=h @house.nom %>
+</p>
+
+<p>
+  <b>Adresse:</b>
+  <%=h @house.adresse %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%=h @house.zip %>
+</p>
+
+<p>
+  <b>Ville:</b>
+  <%=h @house.ville %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%=h @house.category_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @house.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_house_path(@house) %> |
+<%= link_to 'Back', houses_path %>

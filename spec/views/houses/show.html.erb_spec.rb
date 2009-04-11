@@ -11,6 +11,7 @@ describe "/houses/show.html.erb" do
       :category_id => 1,
       :user_id => 1
     )
+    @mock_category = mock('category')
   end
 
   it "renders attributes in <p>" do

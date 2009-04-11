@@ -13,6 +13,7 @@ describe "/houses/new.html.erb" do
       :category_id => 1,
       :user_id => 1
     )
+    assigns[:categories] = @categories = [mock_model(Category, :nom => "value for nom")]
   end
 
   it "renders new house form" do
@@ -23,8 +24,7 @@ describe "/houses/new.html.erb" do
       with_tag("input#house_adresse[name=?]", "house[adresse]")
       with_tag("input#house_zip[name=?]", "house[zip]")
       with_tag("input#house_ville[name=?]", "house[ville]")
-      with_tag("input#house_category_id[name=?]", "house[category_id]")
-      with_tag("input#house_user_id[name=?]", "house[user_id]")
+      with_tag('select#house_category_id[name=?]', "house[category_id]")
     end
   end
 end

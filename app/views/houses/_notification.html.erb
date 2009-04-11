@@ -1,0 +1,9 @@
+<% if @locations && @locations.empty? %>
+  <%= flash[:notice] %>
+  Pré-réservez ce logement : 
+<% elsif @locations %>
+  <p>
+    <%= flash[:notice] %><br/>
+    Nous vous invitons à choisir un autre logement.
+  </p>
+<% end %>

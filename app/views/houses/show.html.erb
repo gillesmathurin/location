@@ -9,7 +9,7 @@
 </p>
 
 <p>
-  <b>Zip:</b>
+  <b>Code Postal:</b>
   <%=h @house.zip %>
 </p>
 
@@ -19,15 +19,22 @@
 </p>
 
 <p>
-  <b>Category:</b>
-  <%=h @house.category_id %>
+  <b>Categorie:</b>
+  <%=h @house.category.nom %>
 </p>
 
 <p>
-  <b>User:</b>
-  <%=h @house.user_id %>
+  Vérifiez que le logement est disponible sur la période que vous souhaitez :
+  <% form_remote_tag :url => search_availability_house_path(@house), :update => 'notification' do %>
+    Du : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => :date_debut %> Au : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => :date_fin %>
+     
+    <%= submit_tag "Rechercher" %>
+  <% end %>
+  
+  <div id="notification">
+    <%= render :partial => "notification", :locals => { :house => @house, :locations => @locations } %>
+  </div>
 </p>
 
-
-<%= link_to 'Edit', edit_house_path(@house) %> |
-<%= link_to 'Back', houses_path %>
+<%= link_to 'Modifier', edit_house_path(@house) %> |
+<%= link_to 'Retour', houses_path %>

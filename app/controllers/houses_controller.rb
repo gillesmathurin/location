@@ -1,5 +1,5 @@
 class HousesController < ApplicationController
-  before_filter :find_categories
+  before_filter :find_categories, :find_tarifs
   
   # GET /houses
   # GET /houses.xml
@@ -88,6 +88,11 @@ class HousesController < ApplicationController
   protected
   
   def find_categories
+    @categories = Category.all
+  end
+  
+  def find_tarifs
+    @tarifs = Tarif.all
     
   end
 end

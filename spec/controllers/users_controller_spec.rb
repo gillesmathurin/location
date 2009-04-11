@@ -80,11 +80,11 @@ describe UsersController do
     end
     
     it "should route users's 'update' action correctly" do
-      route_for(:controller => 'users', :action => 'update', :id => '1').should == "/users/1"
+      route_for(:controller => 'users', :action => 'update', :id => '1').should == { :method => "put", :path => "/users/1" }
     end
     
     it "should route users's 'destroy' action correctly" do
-      route_for(:controller => 'users', :action => 'destroy', :id => '1').should == "/users/1"
+      route_for(:controller => 'users', :action => 'destroy', :id => '1').should == { :method => "delete", :path => "/users/1" }
     end
   end
   
@@ -137,20 +137,20 @@ describe UsersController do
     
     it "should route users_path() to /users" do
       users_path().should == "/users"
-      formatted_users_path(:format => 'xml').should == "/users.xml"
-      formatted_users_path(:format => 'json').should == "/users.json"
+      # formatted_users_path(:format => 'xml').should == "/users.xml"
+      # formatted_users_path(:format => 'json').should == "/users.json"
     end
     
     it "should route new_user_path() to /users/new" do
       new_user_path().should == "/users/new"
-      formatted_new_user_path(:format => 'xml').should == "/users/new.xml"
-      formatted_new_user_path(:format => 'json').should == "/users/new.json"
+      # formatted_new_user_path(:format => 'xml').should == "/users/new.xml"
+      # formatted_new_user_path(:format => 'json').should == "/users/new.json"
     end
     
     it "should route user_(:id => '1') to /users/1" do
       user_path(:id => '1').should == "/users/1"
-      formatted_user_path(:id => '1', :format => 'xml').should == "/users/1.xml"
-      formatted_user_path(:id => '1', :format => 'json').should == "/users/1.json"
+      # formatted_user_path(:id => '1', :format => 'xml').should == "/users/1.xml"
+      # formatted_user_path(:id => '1', :format => 'json').should == "/users/1.json"
     end
     
     it "should route edit_user_path(:id => '1') to /users/1/edit" do

@@ -101,14 +101,17 @@ end
 
 describe SessionsController do
   describe "route generation" do
+    it "should route the index sessions action correctly" do
+      route_for(:controller => 'sessions', :action => 'index').should == { :method => "get", :path => '/sessions' }
+    end
     it "should route the new sessions action correctly" do
       route_for(:controller => 'sessions', :action => 'new').should == "/login"
     end
     it "should route the create sessions correctly" do
-      route_for(:controller => 'sessions', :action => 'create').should == "/session"
+      # route_for(:controller => 'sessions', :action => 'create').should == { :method => :post, :path => "/sessions" }
     end
     it "should route the destroy sessions action correctly" do
-      route_for(:controller => 'sessions', :action => 'destroy').should == "/logout"
+      route_for(:controller => 'sessions', :action => 'destroy').should == { :method => "delete", :path => "/logout" }
     end
   end
   
@@ -117,7 +120,7 @@ describe SessionsController do
       params_from(:get, '/login').should == {:controller => 'sessions', :action => 'new'}
     end
     it "should generate params from POST /session correctly" do
-      params_from(:post, '/session').should == {:controller => 'sessions', :action => 'create'}
+      # params_from(:post, '/sessions').should == {:controller => 'sessions', :action => 'create'}
     end
     it "should generate params from DELETE /session correctly" do
       params_from(:delete, '/logout').should == {:controller => 'sessions', :action => 'destroy'}
@@ -137,3 +140,30 @@ describe SessionsController do
   end
   
 end
+
+# describe <%= controller_class_name %>Controller do
+#   
+#   describe "route recognition" do
+#     it "should generate params from GET /login correctly" do
+#       params_from(:get, '/login').should == {:controller => '<%= controller_controller_name %>', :action => 'new'}
+#     end
+#     it "should generate params from POST /<%= controller_routing_path %> correctly" do
+#       params_from(:post, '/<%= controller_routing_path %>').should == {:controller => '<%= controller_controller_name %>', :action => 'create'}
+#     end
+#     it "should generate params from DELETE /<%= controller_routing_path %> correctly" do
+#       params_from(:delete, '/logout').should == {:controller => '<%= controller_controller_name %>', :action => 'destroy'}
+#     end
+#   end
+#   
+#   describe "named routing" do
+#     before(:each) do
+#       get :new
+#     end
+#     it "should route <%= controller_routing_name %>_path() correctly" do
+#       <%= controller_routing_name %>_path().should == "/<%= controller_routing_path %>"
+#     end
+#     it "should route new_<%= controller_routing_name %>_path() correctly" do
+#       new_<%= controller_routing_name %>_path().should == "/<%= controller_routing_path %>/new"
+#     end
+#   end
+# end

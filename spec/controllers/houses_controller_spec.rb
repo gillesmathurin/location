@@ -6,20 +6,14 @@ describe HousesController do
     @mock_house ||= mock_model(House, stubs)
   end
   
-  describe "Before_filter find_categories" do
-    
-    before(:each) do
-      @category = mock_model(Category)
-      @categories = [@category]
-    end
+  describe "Before_filters" do
     
     it "should have a before_filter which finds all the house categories available" do
       controller.class.before_filters.should include(:find_categories)
     end
     
-    it "should find all the categories and assign them to @categories symbol" do
-      get :index
-      assigns[:categories].should eql(@categories)
+    it "should have a before_filter which returns all the tarifs available" do
+      controller.class.before_filters.should include(:find_tarifs)
     end
     
   end

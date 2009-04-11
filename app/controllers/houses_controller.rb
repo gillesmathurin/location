@@ -1,4 +1,6 @@
 class HousesController < ApplicationController
+  before_filter :find_categories
+  
   # GET /houses
   # GET /houses.xml
   def index
@@ -81,5 +83,11 @@ class HousesController < ApplicationController
       format.html { redirect_to(houses_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  protected
+  
+  def find_categories
+    
   end
 end

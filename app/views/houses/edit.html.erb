@@ -1,36 +1,14 @@
 <h1>Editing house</h1>
 
-<% form_for(@house) do |f| %>
+<% form_for(@house, :html => { :multipart => true }) do |f| %>
   <%= f.error_messages %>
 
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  
   <p>
-    <%= f.label :nom %><br />
-    <%= f.text_field :nom %>
-  </p>
-  <p>
-    <%= f.label :adresse %><br />
-    <%= f.text_field :adresse %>
-  </p>
-  <p>
-    <%= f.label :zip %><br />
-    <%= f.text_field :zip %>
-  </p>
-  <p>
-    <%= f.label :ville %><br />
-    <%= f.text_field :ville %>
-  </p>
-  <p>
-    <%= f.label :category_id %><br />
-    <%= f.text_field :category_id %>
-  </p>
-  <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
+    <%= f.submit 'Mettre à jour' %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @house %> |
-<%= link_to 'Back', houses_path %>
+<%= link_to 'Voir', @house %> |
+<%= link_to 'Retour', houses_path %>

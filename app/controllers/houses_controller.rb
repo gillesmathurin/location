@@ -92,7 +92,6 @@ class HousesController < ApplicationController
   end
   
   def find_tarifs
-    @tarifs = Tarif.all
-    
+    @tarifs = Tarif.all   
   end
 end

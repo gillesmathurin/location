@@ -4,7 +4,7 @@ class HousesController < ApplicationController
   # GET /houses
   # GET /houses.xml
   def index
-    @houses = House.all
+    @houses = House.all(:order => 'position')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -59,6 +59,7 @@ class HousesController < ApplicationController
   # PUT /houses/1
   # PUT /houses/1.xml
   def update
+    params[:house][:tarif_ids] ||= []
     @house = House.find(params[:id])
 
     respond_to do |format|
@@ -72,7 +73,20 @@ class HousesController < ApplicationController
       end
     end
   end
-
+  
+  def sort
+    params[:houses].each_with_index do |id, index|
+      House.update_all(['position = ?', index+1], ['id=?', id])
+    end
+    render :nothing => true
+  end
+  
+  def search_availability
+    @house = House.find(params[:id])
+    @locations = @house.locations.for_the_period
+    render :nothing => true
+  end
+  
   # DELETE /houses/1
   # DELETE /houses/1.xml
   def destroy

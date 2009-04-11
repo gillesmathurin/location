@@ -1,6 +1,6 @@
   <p>
     <%= f.label "Type d'habitation" %>
-    <%= f.collection_select :category_id, @category, :id, :nom %>
+    <%= f.collection_select :category_id, @categories, :id, :nom %>
   </p>
   <p>
     <%= f.label :nom %><br />
@@ -20,7 +20,7 @@
   </p>
   <p>
     <%= f.label :description %><br/>
-    <%= f.text_area :description, :cols => 15, :rows => 20 %>
+    <%= f.text_area :description, :cols => 40, :rows => 10 %>
   </p>
   <p>
     <%= f.label "Photo d'ensemble" %>
@@ -28,23 +28,23 @@
   </p>
   <p>
     <%= f.label "Photo du salon" %>
-    <%= f.file_filed :salon %>
+    <%= f.file_field :salon %>
   </p>
   <p>
     <%= f.label "Photo de la salle d'eau" %>
-    <%= f.file_filed :salle_deau %>
+    <%= f.file_field :salle_deau %>
   </p>
   <p>
     <%= f.label "Photo de la Chambre" %>
-    <%= f.file_filed :chambre %>
+    <%= f.file_field :chambre %>
   </p>
   <p>
     <%= f.label "Photo de la cuisine" %>
-    <%= f.file_filed :cuisine %>
+    <%= f.file_field :cuisine %>
   </p>
   <p>
     <%= f.label "Photo de la Terrasse" %>
-    <%= f.file_filed :terrasse %>
+    <%= f.file_field :terrasse %>
   </p>
   <p>
     <% if !@tarifs.blank? %>

@@ -21,7 +21,7 @@ describe HousesController do
   describe "GET index" do
 
     it "exposes all houses as @houses" do
-      House.should_receive(:find).with(:all).and_return([mock_house])
+      House.should_receive(:find).with(:all, {:order => 'position'}).and_return([mock_house])
       get :index
       assigns[:houses].should == [mock_house]
     end
@@ -29,7 +29,7 @@ describe HousesController do
     describe "with mime type of xml" do
   
       it "renders all houses as xml" do
-        House.should_receive(:find).with(:all).and_return(houses = mock("Array of Houses"))
+        House.should_receive(:find).with(:all, {:order => 'position'}).and_return(houses = mock("Array of Houses"))
         houses.should_receive(:to_xml).and_return("generated XML")
         get :index, :format => 'xml'
         response.body.should == "generated XML"
@@ -122,19 +122,19 @@ describe HousesController do
 
       it "updates the requested house" do
         House.should_receive(:find).with("37").and_return(mock_house)
-        mock_house.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :house => {:these => 'params'}
+        mock_house.should_receive(:update_attributes).with({'these' => 'params', 'tarif_ids' => []})
+        put :update, :id => "37", :house => {:these => 'params', :tarif_ids => []}
       end
 
       it "exposes the requested house as @house" do
         House.stub!(:find).and_return(mock_house(:update_attributes => true))
-        put :update, :id => "1"
+        put :update, :id => "1", :house => {:tarif_ids => []}
         assigns(:house).should equal(mock_house)
       end
 
       it "redirects to the house" do
         House.stub!(:find).and_return(mock_house(:update_attributes => true))
-        put :update, :id => "1"
+        put :update, :id => "1", :house => {:tarif_ids => []}
         response.should redirect_to(house_url(mock_house))
       end
 
@@ -144,19 +144,19 @@ describe HousesController do
 
       it "updates the requested house" do
         House.should_receive(:find).with("37").and_return(mock_house)
-        mock_house.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :house => {:these => 'params'}
+        mock_house.should_receive(:update_attributes).with({'these' => 'params', 'tarif_ids' => []})
+        put :update, :id => "37", :house => {:these => 'params', :tarif_ids => []}
       end
 
       it "exposes the house as @house" do
         House.stub!(:find).and_return(mock_house(:update_attributes => false))
-        put :update, :id => "1"
+        put :update, :id => "1", :house => {:tarif_ids => []}
         assigns(:house).should equal(mock_house)
       end
 
       it "re-renders the 'edit' template" do
         House.stub!(:find).and_return(mock_house(:update_attributes => false))
-        put :update, :id => "1"
+        put :update, :id => "1", :house => {:tarif_ids => []}
         response.should render_template('edit')
       end
 
@@ -180,4 +180,43 @@ describe HousesController do
 
   end
 
+  describe "POST search_availability" do
+    
+    describe "with valid params and unavailable house" do
+      
+      before(:each) do
+        @mock_locations = mock('locations')
+        @mock_location = mock_model(Location)
+      end
+      
+      def do_post
+        post :search_availability, :id => "1", :date_debut => "", :date_fin => ""
+      end
+      
+      it "should find the requested house" do
+        House.should_receive(:find).with("1").and_return(mock_house)
+        do_post
+      end
+      
+      it "should find the locations for the found house" do
+        House.should_receive(:find).with("1").and_return(mock_house)
+        mock_house.should_receive(:locations).and_return(@mock_locations)
+        do_post
+      end
+      
+      it "should verify the availability of the house for the given period" do
+        House.should_receive(:find).with("1").and_return(mock_house)
+        mock_house.should_receive(:locations).and_return(@mock_locations)
+        @mock_locations.should_receive(:for_the_period).and_return([@mock_location])
+        do_post
+      end
+      
+      it "should display of flash message" do
+        House.should_receive(:find).with("1").and_return(mock_house)
+        mock_house.should_receive(:locations).and_return(@mock_locations)
+        @mock_locations.should_receive(:for_the_period).and_return([@mock_location])
+        do_post
+      end
+    end
+  end
 end

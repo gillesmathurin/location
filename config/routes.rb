@@ -9,7 +9,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :session
   
-  map.resources :houses, :has_many => :locations
+  map.resources :houses , :collection => { :sort => :post },
+   :member => { :search_availability => :post },
+   :has_many => :locations
   
   map.resources :locations
   

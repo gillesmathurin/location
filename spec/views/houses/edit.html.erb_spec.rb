@@ -23,7 +23,7 @@ describe "/houses/edit.html.erb" do
       with_tag('input#house_adresse[name=?]', "house[adresse]")
       with_tag('input#house_zip[name=?]', "house[zip]")
       with_tag('input#house_ville[name=?]', "house[ville]")
-      with_tag('input#house_category_id[name=?]', "house[category_id]")
+      # with_tag('select#house_category_id[name=?]', "house[category_id]")
       with_tag('input#house_user_id[name=?]', "house[user_id]")
     end
   end

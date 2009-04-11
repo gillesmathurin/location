@@ -84,7 +84,16 @@ class HousesController < ApplicationController
   def search_availability
     @house = House.find(params[:id])
     @locations = @house.locations.for_the_period
-    render :nothing => true
+    
+    respond_to do |format|
+      if @locations.empty?
+        flash[:notice] = "Logement disponible sur la période demandée."
+        format.html { render :partial => "notification", @object => @house, :layout => false }
+      else
+        flash[:notice] = "Logement indisponible sur la période demandée."
+        format.html { render :partial => "notification", @object => @house, :layout => false }
+      end
+    end
   end
   
   # DELETE /houses/1

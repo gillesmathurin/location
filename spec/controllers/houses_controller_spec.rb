@@ -182,7 +182,7 @@ describe HousesController do
 
   describe "POST search_availability" do
     
-    describe "with valid params and unavailable house" do
+    describe "with valid params and an unavailable house" do
       
       before(:each) do
         @mock_locations = mock('locations')
@@ -193,30 +193,36 @@ describe HousesController do
         post :search_availability, :id => "1", :date_debut => "", :date_fin => ""
       end
       
-      it "should find the requested house" do
-        House.should_receive(:find).with("1").and_return(mock_house)
-        do_post
-      end
-      
-      it "should find the locations for the found house" do
-        House.should_receive(:find).with("1").and_return(mock_house)
-        mock_house.should_receive(:locations).and_return(@mock_locations)
-        do_post
-      end
-      
-      it "should verify the availability of the house for the given period" do
+      it "should search for the given house's availability and display a negative answer" do
         House.should_receive(:find).with("1").and_return(mock_house)
         mock_house.should_receive(:locations).and_return(@mock_locations)
         @mock_locations.should_receive(:for_the_period).and_return([@mock_location])
         do_post
+        response.should render_template('_notification')
+        flash[:notice].should eql('Logement indisponible sur la période demandée.')
+      end
+    end
+    
+    describe "with valid params and a available house" do
+      
+      before(:each) do
+        @mock_locations = mock('locations')
+        @mock_location = []
       end
       
-      it "should display of flash message" do
+      def do_post
+        post :search_availability, :id => "1", :date_debut => "", :date_fin => ""
+      end
+      
+      it "should search for the given house's availability and display a positive answer" do
         House.should_receive(:find).with("1").and_return(mock_house)
         mock_house.should_receive(:locations).and_return(@mock_locations)
-        @mock_locations.should_receive(:for_the_period).and_return([@mock_location])
+        @mock_locations.should_receive(:for_the_period).and_return([])
         do_post
+        response.should render_template('_notification')
+        flash[:notice].should eql('Logement disponible sur la période demandée.')
       end
+      
     end
   end
 end

@@ -24,7 +24,7 @@
 </p>
 
 <p>
-  Vérifiez que le logement est disponible sur la période que vous souhaitez :
+  Vérifiez que le logement est disponible sur la période souhaitée :
   <% form_remote_tag :url => search_availability_house_path(@house), :update => 'notification' do %>
     Du : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => :date_debut %> Au : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => :date_fin %>
      

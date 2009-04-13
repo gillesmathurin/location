@@ -1,0 +1,23 @@
+  <p>
+    <%= f.label :date_debut %><br />
+    <%= f.date_select :date_debut %>
+  </p>
+  <p>
+    <%= f.label :date_fin %><br />
+    <%= f.date_select :date_fin %>
+  </p>
+  
+  <h2>Infos Client</h2>
+  
+  <p>
+    <% f.fields_for :customer do |customer| %>
+      Nom : <%= customer.text_field :nom %><br/>
+      Prenom : <%= customer.text_field :prenom %><br/>
+      Adresse : <%= customer.text_field :adresse %><br/>
+      Code Postal : <%= customer.text_field :zip %><br/>
+      Ville : <%= customer.text_field :ville %><br/>
+      Telephone : <%= customer.text_field :telephone %><br/>
+      Fax : <%= customer.text_field :fax %><br/>
+      Email : <%= customer.text_field :email %>
+    <% end %>
+  </p>

@@ -22,5 +22,6 @@
 </table>
 
 <br />
+<p align="center"><%= will_paginate @locations, :prev_label => "<< Précédent", :next_label => "Suivant >>", :separator =>" | "  %></p>
 
-<%= link_to 'New location', new_location_path %>
+<%= link_to 'Nouvelle Location', new_location_path %>

@@ -10,4 +10,5 @@ class House < ActiveRecord::Base
   has_attached_file :salle_eau, :styles => { :medium => '600x600', :thumb => '100x100'}
   has_attached_file :cuisine, :styles => { :medium => '600x600', :thumb => '100x100'}
   has_attached_file :terrasse, :styles => { :medium => '600x600', :thumb => '100x100'}
+  
 end

@@ -1,6 +1,6 @@
 <% if @locations && @locations.empty? %>
   <%= flash[:notice] %>
-  Pré-réservez ce logement : 
+  Pré-réservez ce logement : <%= link_to "Remplissez le formulaire", "TODO" %>
 <% elsif @locations %>
   <p>
     <%= flash[:notice] %><br/>

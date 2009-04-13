@@ -190,7 +190,8 @@ describe HousesController do
       end
       
       def do_post
-        post :search_availability, :id => "1", :date_debut => "", :date_fin => ""
+        post :search_availability, :id => "1", :date_debut => {:year => "2009", :month => "04", :day => "09"},
+         :date_fin => {:year => "2009", :month => "05", :day => "09"}
       end
       
       it "should search for the given house's availability and display a negative answer" do
@@ -211,7 +212,8 @@ describe HousesController do
       end
       
       def do_post
-        post :search_availability, :id => "1", :date_debut => "", :date_fin => ""
+        post :search_availability, :id => "1", :date_debut => {:year => "2009", :month => "04", :day => "09"},
+         :date_fin => {:year => "2009", :month => "05", :day => "09"}
       end
       
       it "should search for the given house's availability and display a positive answer" do

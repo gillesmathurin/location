@@ -2,7 +2,8 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.xml
   def index
-    @locations = Location.all
+    # @locations = Location.all(:order => 'date_debut')
+    @locations = Location.paginate :all, :page => params[:page], :per_page => 20, :order => 'date_debut asc'
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +26,7 @@ class LocationsController < ApplicationController
   # GET /locations/new.xml
   def new
     @location = Location.new
+    @customer = @location.build_customer
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +37,7 @@ class LocationsController < ApplicationController
   # GET /locations/1/edit
   def edit
     @location = Location.find(params[:id])
+    @customer = @location.customer
   end
 
   # POST /locations

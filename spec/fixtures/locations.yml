@@ -1,13 +1,19 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  house_id: 1
+  house: one
   date_debut: 2009-04-09
-  date_fin: 2009-04-09
+  date_fin: 2009-04-16
   customer_id: 1
 
 two:
-  house_id: 1
+  house: one
   date_debut: 2009-04-09
-  date_fin: 2009-04-09
+  date_fin: 2009-04-24
+  customer_id: 1
+
+three:
+  house: one
+  date_debut: 2009-04-09
+  date_fin: 2009-05-10
   customer_id: 1

@@ -9,7 +9,7 @@ describe LocationsController do
   describe "GET index" do
 
     it "exposes all locations as @locations" do
-      Location.should_receive(:find).with(:all).and_return([mock_location])
+      Location.should_receive(:paginate).with(:all, :page => params[:page], :per_page => 20, :order => 'date_debut asc').and_return([mock_location])
       get :index
       assigns[:locations].should == [mock_location]
     end
@@ -17,7 +17,7 @@ describe LocationsController do
     describe "with mime type of xml" do
   
       it "renders all locations as xml" do
-        Location.should_receive(:find).with(:all).and_return(locations = mock("Array of Locations"))
+        Location.should_receive(:paginate).with(:all, :page => params[:page], :per_page => 20, :order => 'date_debut asc').and_return(locations = mock("Array of Locations"))
         locations.should_receive(:to_xml).and_return("generated XML")
         get :index, :format => 'xml'
         response.body.should == "generated XML"
@@ -50,10 +50,12 @@ describe LocationsController do
 
   describe "GET new" do
   
-    it "exposes a new location as @location" do
+    it "exposes a new location as @location and a new customer as @customer" do
       Location.should_receive(:new).and_return(mock_location)
+      mock_location.should_receive(:customer_build).and_return(@customer = mock_model(Customer))
       get :new
       assigns[:location].should equal(mock_location)
+      assigns[:customer].should eql(@customer)
     end
 
   end
@@ -62,8 +64,10 @@ describe LocationsController do
   
     it "exposes the requested location as @location" do
       Location.should_receive(:find).with("37").and_return(mock_location)
+      mock_location.should_receive(:customer).and_return(@customer = mock_model(Customer))
       get :edit, :id => "37"
       assigns[:location].should equal(mock_location)
+      assigns[:customer].should equal(@customer)
     end
 
   end

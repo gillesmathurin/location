@@ -1,27 +1,13 @@
-<h1>New location</h1>
+<h1>Enregistrez une Réservation</h1>
 
 <% form_for(@location) do |f| %>
   <%= f.error_messages %>
 
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  
   <p>
-    <%= f.label :house_id %><br />
-    <%= f.text_field :house_id %>
-  </p>
-  <p>
-    <%= f.label :date_debut %><br />
-    <%= f.date_select :date_debut %>
-  </p>
-  <p>
-    <%= f.label :date_fin %><br />
-    <%= f.date_select :date_fin %>
-  </p>
-  <p>
-    <%= f.label :customer_id %><br />
-    <%= f.text_field :customer_id %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Enregistrer' %>
   </p>
 <% end %>
 
-<%= link_to 'Back', locations_path %>
+<%= link_to 'Retour', locations_path %>

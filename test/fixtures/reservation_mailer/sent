@@ -1,0 +1,3 @@
+ReservationMailer#sent
+
+Find me in app/views/reservation_mailer/sent.erb

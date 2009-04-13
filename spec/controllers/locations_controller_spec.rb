@@ -78,12 +78,14 @@ describe LocationsController do
       
       it "exposes a newly created location as @location" do
         Location.should_receive(:new).with({'these' => 'params'}).and_return(mock_location(:save => true))
+        mock_location.stub!(:house=)
         post :create, :location => {:these => 'params'}
         assigns(:location).should equal(mock_location)
       end
 
       it "redirects to the created location" do
         Location.stub!(:new).and_return(mock_location(:save => true))
+        mock_location.stub!(:house=)
         post :create, :location => {}
         response.should redirect_to(location_url(mock_location))
       end
@@ -94,12 +96,14 @@ describe LocationsController do
 
       it "exposes a newly created but unsaved location as @location" do
         Location.stub!(:new).with({'these' => 'params'}).and_return(mock_location(:save => false))
+        mock_location.stub!(:house=)
         post :create, :location => {:these => 'params'}
         assigns(:location).should equal(mock_location)
       end
 
       it "re-renders the 'new' template" do
         Location.stub!(:new).and_return(mock_location(:save => false))
+        mock_location.stub!(:house=)
         post :create, :location => {}
         response.should render_template('new')
       end

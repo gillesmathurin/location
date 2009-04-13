@@ -1,0 +1,28 @@
+<p>
+  <b>Nom:</b>
+  <%=h @prospect.nom %>
+</p>
+
+<p>
+  <b>Prenom:</b>
+  <%=h @prospect.prenom %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @prospect.email %>
+</p>
+
+<p>
+  <b>Telephone:</b>
+  <%=h @prospect.telephone %>
+</p>
+
+<p>
+  <b>Fax:</b>
+  <%=h @prospect.fax %>
+</p>
+
+
+<%= link_to 'Edit', edit_prospect_path(@prospect) %> |
+<%= link_to 'Back', prospects_path %>

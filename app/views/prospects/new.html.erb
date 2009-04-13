@@ -1,0 +1,49 @@
+<h1>Formulaire de pré-réservation</h1>
+
+<p>
+  Grâce à ce formulaire, nous entrerons en contact avec vous dans les plus brefs délais
+</p>
+
+<% form_for(@prospect) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :nom %><br />
+    <%= f.text_field :nom %>
+  </p>
+  <p>
+    <%= f.label :prenom %><br />
+    <%= f.text_field :prenom %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :telephone %><br />
+    <%= f.text_field :telephone %>
+  </p>
+  <p>
+    <%= f.label :fax %><br />
+    <%= f.text_field :fax %>
+  </p>
+  
+  <p>Période souhaitée</p>
+  <p>
+    <%= f.label "Du :" %>
+    <%= f.date_select :date_debut %>
+  </p>
+  <p>
+    <%= f.label "Au :" %>
+    <%= f.date_select :date_fin %>
+  </p>
+  <p>
+    <%= f.label "Maison n° :" %>
+    <%= f.text_field :house_id, :size => 10 %>
+  </p>
+  <p>
+    <%= f.submit 'Valider' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', prospects_path %>

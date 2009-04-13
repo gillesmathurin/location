@@ -1,0 +1,10 @@
+Bonjour,
+
+Vous avez reçu une pré-réservation de :
+
+<%= @prospect.nom %> <%= @prospect.prenom %> demeurant au : <%= @prospect.adresse %> <%= @prospect.code_postal %> <%= @prospect.ville %> et joignable :
+  par téléphone : <%= @prospect.telephone %>
+  par fax : <%= @prospect.fax %> 
+  par email : <%= @prospect.email %>
+
+pour le logement n°<%= @house.id %> <%= @house.nom %> <%= @house.adresse %> <%= @house.zip %> <%= @house.ville %> pour une période allant du <%= @prospect.date_debut.strftime("%d/%m/%Y") %> au <%= @prospect.date_fin.strftime("%d/%m/%Y") %>

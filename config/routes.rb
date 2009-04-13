@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
    :member => { :search_availability => :post },
    :has_many => :locations
   
-  map.resources :locations
+  map.resources :locations, :collection => { :search => :post }
   
   map.resources :customers, :has_many => :locations
   

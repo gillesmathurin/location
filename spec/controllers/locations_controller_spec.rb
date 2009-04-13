@@ -52,7 +52,7 @@ describe LocationsController do
   
     it "exposes a new location as @location and a new customer as @customer" do
       Location.should_receive(:new).and_return(mock_location)
-      mock_location.should_receive(:customer_build).and_return(@customer = mock_model(Customer))
+      mock_location.should_receive(:build_customer).and_return(@customer = mock_model(Customer))
       get :new
       assigns[:location].should equal(mock_location)
       assigns[:customer].should eql(@customer)
@@ -154,6 +154,21 @@ describe LocationsController do
 
     end
 
+  end
+
+  describe "POST search" do
+    
+    def do_post
+      post :search, :date_debut => {:year => "2009", :month => "04", :day => "09"},
+       :date_fin => {:year => "2009", :month => "05", :day => "09"}
+    end
+    
+    it "should fetch all the location for the given period and update the _listing partial" do
+      Location.should_receive(:for_the_period).and_return([mock_location])
+      do_post
+      response.should render_template('_listing')
+      assigns[:locations].should eql([mock_location])
+    end
   end
 
   describe "DELETE destroy" do

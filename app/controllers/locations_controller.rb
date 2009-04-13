@@ -73,6 +73,18 @@ class LocationsController < ApplicationController
       end
     end
   end
+  
+  # POST
+  def search
+    date_debut = params[:date_debut][:year]+"-"+params[:date_debut][:month]+"-"+params[:date_debut][:day]
+    date_fin = params[:date_fin][:year]+"-"+params[:date_fin][:month]+"-"+params[:date_fin][:day]
+    
+    @locations = Location.for_the_period(date_debut, date_fin)
+    
+    respond_to do |format|
+      format.html { render :partial => "_listing", :collections => @locations, :layout => false }
+    end
+  end
 
   # DELETE /locations/1
   # DELETE /locations/1.xml

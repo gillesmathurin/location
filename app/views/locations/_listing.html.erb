@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th>House</th>
+    <th>Date debut</th>
+    <th>Date fin</th>
+    <th>Customer</th>
+  </tr>
+
+<% @locations.each do |location| %>
+  <tr>
+    <td><%=h location.house_id %></td>
+    <td><%=h location.date_debut %></td>
+    <td><%=h location.date_fin %></td>
+    <td><%=h location.customer_id %></td>
+    <td><%= link_to 'Show', location %></td>
+    <td><%= link_to 'Edit', edit_location_path(location) %></td>
+    <td><%= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

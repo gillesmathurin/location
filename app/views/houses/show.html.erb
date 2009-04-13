@@ -36,5 +36,11 @@
   </div>
 </p>
 
-<%= link_to 'Modifier', edit_house_path(@house) %> |
+<p>
+  <% if logged_in? %>
+    <%= link_to 'Modifier', edit_house_path(@house) %> |
+    <%= link_to 'Ajouter une réservation', new_house_location_path(@house) %>
+  <% end %>
+</p>
+
 <%= link_to 'Retour', houses_path %>

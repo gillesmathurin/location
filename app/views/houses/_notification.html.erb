@@ -4,6 +4,6 @@
 <% elsif @locations %>
   <p>
     <%= flash[:notice] %><br/>
-    Nous vous invitons à choisir un autre logement.
+    Nous vous invitons à choisir un autre logement. <%= link_to "Nos Logements", houses_path %>
   </p>
 <% end %>

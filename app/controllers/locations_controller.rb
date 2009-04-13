@@ -1,9 +1,14 @@
 class LocationsController < ApplicationController
+  before_filter :find_house
+  
   # GET /locations
   # GET /locations.xml
   def index
-    # @locations = Location.all(:order => 'date_debut')
-    @locations = Location.paginate :all, :page => params[:page], :per_page => 20, :order => 'date_debut asc'
+    if @house
+      @locations = @house.locations.paginate :all, :page => params[:page], :per_page => 20, :order => 'date_debut asc'
+    else
+      @locations = Location.paginate :all, :page => params[:page], :per_page => 20, :order => 'date_debut asc'
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +30,12 @@ class LocationsController < ApplicationController
   # GET /locations/new
   # GET /locations/new.xml
   def new
-    @location = Location.new
+    if @house
+      @location = @house.locations.build(:house_id => @house.id)
+    else
+      @location = Location.new()
+    end
+    
     @customer = @location.build_customer
 
     respond_to do |format|
@@ -44,6 +54,7 @@ class LocationsController < ApplicationController
   # POST /locations.xml
   def create
     @location = Location.new(params[:location])
+    @location.house = @house
 
     respond_to do |format|
       if @location.save
@@ -96,5 +107,11 @@ class LocationsController < ApplicationController
       format.html { redirect_to(locations_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  protected
+  
+  def find_house
+    @house = House.find(params[:house_id]) if params[:house_id]
   end
 end

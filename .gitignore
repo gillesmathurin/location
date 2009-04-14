@@ -6,3 +6,5 @@ public/cache/**/*
 doc/api
 doc/app
 config/database.yml
+config/initializers/site_keys.rb
+config/initializers/session_store.rb

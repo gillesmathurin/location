@@ -16,7 +16,7 @@ class HousesController < ApplicationController
   # GET /houses/1.xml
   def show
     @house = House.find(params[:id])
-    @locations = @house.locations.to_come
+    @reservations = @house.locations.to_come
 
     respond_to do |format|
       format.html # show.html.erb
@@ -90,11 +90,11 @@ class HousesController < ApplicationController
     
     respond_to do |format|
       if @locations.empty?
-        flash[:notice] = "Logement disponible sur la période demandée."
+        flash[:notification] = "Logement disponible sur la période demandée."
         format.html { render :partial => "notification", :locals => {:house => @house, :locations => @locations},
          :layout => false }
       else
-        flash[:notice] = "Logement indisponible sur la période demandée."
+        flash[:notification] = "Logement indisponible sur la période demandée."
         format.html { render :partial => "notification", :locals => {:house => @house, :locations => @locations},
          :layout => false }
       end

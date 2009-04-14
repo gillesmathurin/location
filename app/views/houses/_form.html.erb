@@ -11,7 +11,7 @@
     <%= f.text_field :adresse %>
   </p>
   <p>
-    <%= f.label :zip %><br />
+    <%= f.label "Code Postal" %><br />
     <%= f.text_field :zip %>
   </p>
   <p>
@@ -55,8 +55,7 @@
       <% end %>
     <% else %>
       <div>
-        Pensez à enregistrer vos tarifs <%= link_to "Nouveau tarif", new_tarif_path() %>
-        Nouveau tarif : <%= text_field_tag :new_tarif_nom %> <%= text_field_tag :new_tarif_price %>
+        Enregistrez d'abord vos tarifs <%= link_to "Nouveau tarif", new_tarif_path() %>
       </div>
     <% end %>
   </p>

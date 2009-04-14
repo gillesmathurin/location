@@ -1,13 +1,13 @@
 class LocationsController < ApplicationController
-  before_filter :find_house
+  before_filter :find_house, :login_required
   
   # GET /locations
   # GET /locations.xml
   def index
     if @house
-      @locations = @house.locations.paginate :all, :page => params[:page], :per_page => 20, :order => 'date_debut asc'
+      @locations = @house.locations.paginate :all, :page => params[:page], :per_page => 20, :order => 'date_debut desc'
     else
-      @locations = Location.paginate :all, :page => params[:page], :per_page => 20, :order => 'date_debut asc'
+      @locations = Location.paginate :all, :page => params[:page], :per_page => 20, :order => 'date_debut desc'
     end
 
     respond_to do |format|

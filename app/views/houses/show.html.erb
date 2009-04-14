@@ -52,13 +52,15 @@
     
     <h2>Planning des réservations</h2>
     
-    <% if !@locations.blank? %>
+    <% if !@reservations.blank? %>
     <ul>
-      <% for location in @locations %>
+      <% for reservation in @reservations %>
         <li>
-          Du : <%= location.date_debut.strftime("%d/%m/%Y") %> Au : <%= location.date_fin.strftime("%d/%m/%Y") %>
-          par <%= location.customer.nom_prenom %> <%= link_to "Modifier", edit_house_location_path(@house, location) %>
-          <%= link_to "Supprimer", house_location_path(@house, location), :confirm => "Certain ?", :method => :delete %>
+          Du : <%= reservation.date_debut.strftime("%d/%m/%Y") %>
+          Au : <%= reservation.date_fin.strftime("%d/%m/%Y") %>
+          par <%= reservation.customer.nom_prenom %>
+          <%= link_to "Modifier", edit_house_location_path(@house, reservation) %>
+          <%= link_to "Supprimer", house_location_path(@house, reservation), :confirm => "Certain ?", :method => :delete %>
         </li>
       <% end %>
     </ul>

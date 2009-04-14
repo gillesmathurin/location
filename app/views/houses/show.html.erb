@@ -24,9 +24,15 @@
 </p>
 
 <p>
+  <b>Description:</b>
+  <%= simple_format(@house.description) %>
+</p>
+
+<p>
   Vérifiez que le logement est disponible sur la période souhaitée :
   <% form_remote_tag :url => search_availability_house_path(@house), :update => 'notification' do %>
-    Du : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => :date_debut %> Au : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => :date_fin %>
+    Du : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => :date_debut %>
+    Au : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => :date_fin %>
      
     <%= submit_tag "Rechercher" %>
   <% end %>
@@ -36,11 +42,31 @@
   </div>
 </p>
 
-<p>
-  <% if logged_in? %>
+<% if logged_in? %>
+  <p>
     <%= link_to 'Modifier', edit_house_path(@house) %> |
     <%= link_to 'Ajouter une réservation', new_house_location_path(@house) %>
-  <% end %>
-</p>
+  </p>
+  
+  <div id="reservations">
+    
+    <h2>Planning des réservations</h2>
+    
+    <% if !@locations.blank? %>
+    <ul>
+      <% for location in @locations %>
+        <li>
+          Du : <%= location.date_debut.strftime("%d/%m/%Y") %> Au : <%= location.date_fin.strftime("%d/%m/%Y") %>
+          par <%= location.customer.nom_prenom %> <%= link_to "Modifier", edit_house_location_path(@house, location) %>
+          <%= link_to "Supprimer", house_location_path(@house, location), :confirm => "Certain ?", :method => :delete %>
+        </li>
+      <% end %>
+    </ul>
+    <% else %>
+      <p>Pas de réservations pour ce logement.</p>
+    <% end %>
+    
+  </div>
+<% end %>
 
 <%= link_to 'Retour', houses_path %>

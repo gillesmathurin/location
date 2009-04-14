@@ -48,8 +48,8 @@ class ProspectsController < ApplicationController
     respond_to do |format|
       if @prospect.save
         ReservationMailer.deliver_sent(@prospect, @prospect.house)
-        flash[:notice] = 'Prospect was successfully created.'
-        format.html { redirect_to(@prospect) }
+        flash[:notice] = "Votre demande d'informations a été pris en compte."
+        format.html { redirect_to(house_path(@prospect.house)) }
         format.xml  { render :xml => @prospect, :status => :created, :location => @prospect }
       else
         format.html { render :action => "new" }

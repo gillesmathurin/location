@@ -7,6 +7,9 @@ class Location < ActiveRecord::Base
   
   named_scope :for_the_period, lambda { |date_debut, date_fin| { :conditions => ['(date_debut <=? and date_fin >=?) OR (date_fin between ? and ?) OR (date_debut between ? and ?)', date_debut, date_fin, date_debut, date_fin, date_debut, date_fin] } }
   
+  named_scope :to_come, :conditions => ['date_debut >= ? or date_fin >= ?', Date.today, Date.today], :order => 'date_debut asc'
+  
+  
   def calculate_price
     duration = (self.date_fin - self.date_debut).to_i
     tarif_journalier = self.house.tarifs.first(:conditions => ['days_nb = ?', 1])

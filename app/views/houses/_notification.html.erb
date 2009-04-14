@@ -1,6 +1,6 @@
 <% if @locations && @locations.empty? %>
-  <%= flash[:notice] %>
-  Ce logement est disponible !! Pré-réservez le et nous rentrerons en contact avec vous : <%= link_to "Pré-réservation", new_prospect_path(:house_id => @house.id, :date_debut => params[:date_debut], :date_fin => params[:date_fin]) %>
+  <%= flash[:notice] %><br/>
+  Ce logement est disponible !! <%= link_to "Pré-réservez", new_prospect_path(:house_id => @house.id, :date_debut => params[:date_debut], :date_fin => params[:date_fin]) %> le et nous entrerons en contact avec vous
 <% elsif @locations %>
   <p>
     <%= flash[:notice] %><br/>

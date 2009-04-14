@@ -16,6 +16,7 @@ class HousesController < ApplicationController
   # GET /houses/1.xml
   def show
     @house = House.find(params[:id])
+    @locations = @house.locations.to_come
 
     respond_to do |format|
       format.html # show.html.erb

@@ -1,19 +1,19 @@
-<h1>Planning des Locations</h1>
+<h1>Planning des Locations et réservations</h1>
+
+  <div id="search">
+    <h2>Rechercher sur une période donnée</h2>
+    <% form_remote_tag :url => search_locations_path(), :update => 'listing' do %>
+      Du : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => 'date_debut' %><br/>
+      Au : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => 'date_fin' %><br/>
+    <% end %>
+  </div>
 
   <div id="listing">
     <%= render :partial => 'listing', :collection => @locations %>
   </div>
   
-<p align="center">
-  <%= will_paginate @locations, :prev_label => "<< Précédent", :next_label => "Suivant >>", :separator =>" | "  %>
-</p>
+  <p align="center">
+    <%= will_paginate @locations, :prev_label => "<< Précédent", :next_label => "Suivant >>", :separator =>" | "  %>
+  </p>
 
-<div id="search">
-  <h2>Rechercher sur une période donnée</h2>
-  <% form_remote_tag :url => search_locations_path(), :update => 'listing' do %>
-    Du : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => 'date_debut' %><br/>
-    Au : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => 'date_fin' %><br/>
-  <% end %>
-</div>
-
-<%= link_to 'Nouvelle Location', new_location_path %>
+<%= link_to 'Nouvelle Résevation', new_location_path %>

@@ -74,12 +74,14 @@ describe ProspectsController do
       
       it "exposes a newly created prospect as @prospect" do
         Prospect.should_receive(:new).with({'these' => 'params'}).and_return(mock_prospect(:save => true))
+        mock_prospect.should_receive(:house)
         post :create, :prospect => {:these => 'params'}
         assigns(:prospect).should equal(mock_prospect)
       end
 
       it "redirects to the created prospect" do
         Prospect.stub!(:new).and_return(mock_prospect(:save => true))
+        mock_prospect.should_receive(:house)
         post :create, :prospect => {}
         response.should redirect_to(prospect_url(mock_prospect))
       end

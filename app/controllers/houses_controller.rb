@@ -5,6 +5,7 @@ class HousesController < ApplicationController
   # GET /houses.xml
   def index
     @houses = House.all(:order => 'position')
+    @promo = PromoGenerale.last
 
     respond_to do |format|
       format.html # index.html.erb

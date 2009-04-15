@@ -1,6 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe LocationsController do
+  include AuthenticatedTestHelper
+  fixtures :users
+  
+  before(:each) do
+    login_as('aaron')
+  end
 
   def mock_location(stubs={})
     @mock_location ||= mock_model(Location, stubs)
@@ -9,7 +15,7 @@ describe LocationsController do
   describe "GET index" do
 
     it "exposes all locations as @locations" do
-      Location.should_receive(:paginate).with(:all, :page => params[:page], :per_page => 20, :order => 'date_debut asc').and_return([mock_location])
+      Location.should_receive(:paginate).with(:all, :page => params[:page], :per_page => 20, :order => 'date_debut desc').and_return([mock_location])
       get :index
       assigns[:locations].should == [mock_location]
     end
@@ -17,7 +23,7 @@ describe LocationsController do
     describe "with mime type of xml" do
   
       it "renders all locations as xml" do
-        Location.should_receive(:paginate).with(:all, :page => params[:page], :per_page => 20, :order => 'date_debut asc').and_return(locations = mock("Array of Locations"))
+        Location.should_receive(:paginate).with(:all, :page => params[:page], :per_page => 20, :order => 'date_debut desc').and_return(locations = mock("Array of Locations"))
         locations.should_receive(:to_xml).and_return("generated XML")
         get :index, :format => 'xml'
         response.body.should == "generated XML"

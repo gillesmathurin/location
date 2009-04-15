@@ -1,6 +1,7 @@
 class House < ActiveRecord::Base
   has_many :locations
   has_many :prospects
+  has_many :offres
   # belongs_to :user
   belongs_to :category
   has_and_belongs_to_many :tarifs

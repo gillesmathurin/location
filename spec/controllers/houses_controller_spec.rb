@@ -40,9 +40,15 @@ describe HousesController do
   end
 
   describe "GET show" do
+    
+    before(:each) do
+      @locations_prox = mock('locations')
+    end
 
     it "exposes the requested house as @house" do
       House.should_receive(:find).with("37").and_return(mock_house)
+      mock_house.should_receive(:locations).and_return(@locations_prox)
+      @locations_prox.should_receive(:to_come)
       get :show, :id => "37"
       assigns[:house].should equal(mock_house)
     end
@@ -51,6 +57,8 @@ describe HousesController do
 
       it "renders the requested house as xml" do
         House.should_receive(:find).with("37").and_return(mock_house)
+        mock_house.should_receive(:locations).and_return(@locations_prox)
+        @locations_prox.should_receive(:to_come)
         mock_house.should_receive(:to_xml).and_return("generated XML")
         get :show, :id => "37", :format => 'xml'
         response.body.should == "generated XML"
@@ -200,7 +208,7 @@ describe HousesController do
         @mock_locations.should_receive(:for_the_period).and_return([@mock_location])
         do_post
         response.should render_template('_notification')
-        flash[:notice].should eql('Logement indisponible sur la période demandée.')
+        flash[:notification].should eql('Logement indisponible sur la période demandée.')
       end
     end
     
@@ -222,7 +230,7 @@ describe HousesController do
         @mock_locations.should_receive(:for_the_period).and_return([])
         do_post
         response.should render_template('_notification')
-        flash[:notice].should eql('Logement disponible sur la période demandée.')
+        flash[:notification].should eql('Logement disponible sur la période demandée.')
       end
       
     end

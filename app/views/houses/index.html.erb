@@ -1,15 +1,46 @@
-<h1>Listing houses</h1>
+<h1>Nos Locations</h1>
 
-<ul id="houses">
+<div id="offres">
+  <!-- TODO : insérer le bloc de promotion -->
+</div>
 
-  <% @houses.each do |house| %>
-    <li id="house_<%= house.id %>" ><%=h house.nom %> <%=h house.adresse %> <%=h house.zip %> <%=h house.ville %> <%=h house.category.nom %><%= link_to 'Show', house %> <%= link_to 'Edit', edit_house_path(house) %> <%= link_to 'Destroy', house, :confirm => 'Are you sure?', :method => :delete %>
-    </li>
-  <% end %>
+<div id="bienvenue">
+  <p>
+    
+  </p>
+</div>
 
-</ul>
-<%= sortable_element("houses", :url => sort_houses_path) %>
+<div id="logements">
+  <table>
+    <% @houses.in_groups_of(3, false) do |group| %>
+      <tr>
+        <% group.each do |house| %>
+          <td>
+            <p>
+              <!-- TODO : insérer vignette photo general -->
+            </p>
+            <p>
+              <%=h house.nom %> <br/><%=h house.category.nom %>
+              <%= link_to 'Voir Details', house %> 
+            </p>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
-<br />
+<% if logged_in? %>
+  <ul id="houses">
 
-<%= link_to 'New house', new_house_path %>
+    <% @houses.each do |house| %>
+      <li id="house_<%= house.id %>" ><%=h house.nom %> <%=h house.adresse %> <%=h house.zip %> <%=h house.ville %> <%=h house.category.nom %><%= link_to 'Show', house %> <%= link_to 'Edit', edit_house_path(house) %> <%= link_to 'Destroy', house, :confirm => 'Are you sure?', :method => :delete %>
+      </li>
+    <% end %>
+
+  </ul>
+  <%= sortable_element("houses", :url => sort_houses_path) %>
+  
+  <%= link_to 'Ajouter un Logement', new_house_path %>
+<% end %>
+

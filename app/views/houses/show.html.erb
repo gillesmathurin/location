@@ -1,74 +1,90 @@
-<p>
-  <b>Nom:</b>
-  <%=h @house.nom %>
-</p>
-
-<p>
-  <b>Adresse:</b>
-  <%=h @house.adresse %>
-</p>
-
-<p>
-  <b>Code Postal:</b>
-  <%=h @house.zip %>
-</p>
-
-<p>
-  <b>Ville:</b>
-  <%=h @house.ville %>
-</p>
-
-<p>
-  <b>Categorie:</b>
-  <%=h @house.category.nom %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= simple_format(@house.description) %>
-</p>
-
-<p>
-  Vérifiez que le logement est disponible sur la période souhaitée :
-  <% form_remote_tag :url => search_availability_house_path(@house), :update => 'notification' do %>
-    Du : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => :date_debut %>
-    Au : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => :date_fin %>
-     
-    <%= submit_tag "Rechercher" %>
-  <% end %>
+<div id="titre">
   
-  <div id="notification">
-    <%= render :partial => "notification", :locals => { :house => @house, :locations => @locations } %>
+  <div class"nom_house">
+    <p>
+      <%=h @house.nom %>
+    </p>
   </div>
-</p>
+  
+  <div class="infos_house">
+    <p>
+      <b>Categorie:</b>
+      <%=h @house.category.nom %><br/>
+      <b>Adresse:</b>
+      <%=h @house.adresse %><br/>
+      <b>Code Postal:</b>
+      <%=h @house.zip %><br/>
+      <b>Ville:</b>
+      <%=h @house.ville %>
+    </p>
+  </div>
+  
+</div>
 
-<% if logged_in? %>
+<div id="photos">
+  <div id="overview">
+    
+  </div>
+  <div id="tableau_photos">
+    <table>
+      
+    </table>
+  </div>
+</div>
+
+<div id="description">
   <p>
-    <%= link_to 'Modifier', edit_house_path(@house) %> |
-    <%= link_to 'Ajouter une réservation', new_house_location_path(@house) %>
+    <b>Description:</b>
+    <%= simple_format(@house.description) %>
   </p>
-  
-  <div id="reservations">
-    
-    <h2>Planning des réservations</h2>
-    
-    <% if !@reservations.blank? %>
-    <ul>
-      <% for reservation in @reservations %>
-        <li>
-          Du : <%= reservation.date_debut.strftime("%d/%m/%Y") %>
-          Au : <%= reservation.date_fin.strftime("%d/%m/%Y") %>
-          par <%= reservation.customer.nom_prenom %>
-          <%= link_to "Modifier", edit_house_location_path(@house, reservation) %>
-          <%= link_to "Supprimer", house_location_path(@house, reservation), :confirm => "Certain ?", :method => :delete %>
-        </li>
-      <% end %>
-    </ul>
-    <% else %>
-      <p>Pas de réservations pour ce logement.</p>
+</div>
+
+<div id="formulaire_dispo">
+  <p>
+    Vérifiez que le logement est disponible sur la période souhaitée :
+    <% form_remote_tag :url => search_availability_house_path(@house), :update => 'notification' do %>
+      Du : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => :date_debut %>
+      Au : <%= select_date Date.today, :order => [:day, :month, :year], :prefix => :date_fin %>
+
+      <%= submit_tag "Rechercher" %>
     <% end %>
-    
-  </div>
-<% end %>
+
+    <div id="notification">
+      <%= render :partial => "notification", :locals => { :house => @house, :locations => @locations } %>
+    </div>
+  </p>
+</div>
+
+<div id="section_admin">
+  <% if logged_in? %>
+    <p>
+      <%= link_to 'Modifier', edit_house_path(@house) %> |
+      <%= link_to 'Ajouter une réservation', new_house_location_path(@house) %>
+    </p>
+
+    <div id="reservations">
+
+      <h2>Planning des réservations</h2>
+
+      <% if !@reservations.blank? %>
+      <ul>
+        <% for reservation in @reservations %>
+          <li>
+            Du : <%= reservation.date_debut.strftime("%d/%m/%Y") %>
+            Au : <%= reservation.date_fin.strftime("%d/%m/%Y") %>
+            par <%= reservation.customer.nom_prenom %>
+            <%= link_to "Modifier", edit_house_location_path(@house, reservation) %>
+            <%= link_to "Supprimer", house_location_path(@house, reservation), :confirm => "Certain ?", :method => :delete %>
+          </li>
+        <% end %>
+      </ul>
+      <% else %>
+        <p>Pas de réservations pour ce logement.</p>
+      <% end %>
+
+    </div>
+  <% end %>
+</div>
+
 
 <%= link_to 'Retour', houses_path %>

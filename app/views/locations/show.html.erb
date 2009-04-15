@@ -1,23 +1,67 @@
-<p>
-  <b>House:</b>
-  <%=h @location.house_id %>
-</p>
+<h1>Réservation n°<%= @location.id %></h1>
 
-<p>
-  <b>Date debut:</b>
-  <%=h @location.date_debut %>
-</p>
+<div id="house_summary">
+  <p>
+    <%= image_tag @location.house.overview.url(:thumb) %>
+  </p>
+  <p>
+    <%= @location.house.nom %><br/>
+    <%= @location.house.category.nom %><br/>
+  </p>
+  <p>
+    <table>
+      <tr>
+        <th>Nb de Jours</th>
+        <th>Prix € TTC</th>
+      </tr>
+      <% @locations.tarifs.each do |tarif| %>
+      <tr>
+        <td><%= tarif.days_nb %></td>
+        <td><%= number_to_currency(tarif.price, :unit => "€", :separator => ",", :format => "%n %u") %></td>
+      </tr>
+      <% end %>
+    </table>
+  </p>
+</div>
 
-<p>
-  <b>Date fin:</b>
-  <%=h @location.date_fin %>
-</p>
+<div id="date_reservation">
+  <p>
+    DU : <%=h @location.date_debut.strftime("%d/%m/%Y") %> AU : <%=h @location.date_fin.strftime("%d/%m/%Y") %>
+  </p>
+</div>
 
-<p>
-  <b>Customer:</b>
-  <%=h @location.customer_id %>
-</p>
+<div id="info_client">
+  <h2>Informations Client</h2>
+  
+  <table>
+    <tr>
+      <th>Nom :</th><td><%= @location.customer.nom %></td>
+    </tr>
+    <tr>
+      <th>Prénom :</th><td><%= @location.customer.prenom %></td>
+    </tr>
+    <tr>
+      <th>Adresse :</th><td><%= @location.customer.adresse %></td>
+    </tr>
+    <tr>
+      <th>Code Postal :</th><td><%= @location.customer.code_postal %></td>
+    </tr>
+    <tr>
+      <th>Ville :</th><td><%= @location.customer.ville %></td>
+    </tr>
+    <tr>
+      <th>Tel :</th><td><%= @location.customer.telephone %></td>
+    </tr>
+    <tr>
+      <th>Fax :</th><td><%= @location.customer.fax %></td>
+    </tr>
+    <tr>
+      <th>Email :</th><td><%= @location.customer.email %></td>
+    </tr>
+  </table>
+</div>
 
-
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
+<%- if logged_in? -%>
+  <%= link_to 'Modifier', edit_location_path(@location) %> |
+  <%= link_to 'Retour', locations_path %>
+<%- end -%>

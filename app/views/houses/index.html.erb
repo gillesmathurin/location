@@ -17,7 +17,7 @@
         <% group.each do |house| %>
           <td>
             <p>
-              <!-- TODO : insérer vignette photo general -->
+              <%= image_tag house.overview.url(:thumb) %>
             </p>
             <p>
               <%=h house.nom %> <br/><%=h house.category.nom %>

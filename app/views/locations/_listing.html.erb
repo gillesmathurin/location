@@ -1,20 +1,27 @@
 <% @locations.each do |location| %>
+
   <div class="location">
+    
     <p>
       <%= image_tag house.overview.url(:thumb) %>
       DU : <%=h location.date_debut.strftime("%d/%m/%Y") %>
       AU : <%=h location.date_fin.strftime("%d/%m/%Y") %> <%= link_to "voir details client", "" %>
       Devis : <%=h number_to_currency(location.estimate, :unit => "€", :format => "%n %u", :separator => ",") %>
     </p>
+    
     <p>
       Infos Client :
       <%=h location.customer.nom_prenom %> <%= h location.customer.adresse %> <%= h location.customer.code_postal %> <%=h location.customer.ville  %><br/>
       Tel :<%= h location.customer.telephone %> | Fax <%= h location.customer.fax %> | Email : <%= h location.customer.email %>
     </p>
+    
     <p><%= link_to 'Voir', location %></p>
+    
     <% if logged_in? %>
       <%= link_to 'Modifier', edit_location_path(location) %>
       <%= link_to 'Destroy', location , :confirm => 'Are you sure?', :method => :delete %>
     <% end %>
+    
   </div>
+  
 <% end %>

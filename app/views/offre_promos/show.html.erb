@@ -1,0 +1,28 @@
+<p>
+  <b>Titre:</b>
+  <%=h @offre_promo.titre %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @offre_promo.description %>
+</p>
+
+<p>
+  <b>Date debut:</b>
+  <%=h @offre_promo.date_debut %>
+</p>
+
+<p>
+  <b>Date fin:</b>
+  <%=h @offre_promo.date_fin %>
+</p>
+
+<p>
+  <b>House:</b>
+  <%=h @offre_promo.house_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_offre_promo_path(@offre_promo) %> |
+<%= link_to 'Back', offre_promos_path %>

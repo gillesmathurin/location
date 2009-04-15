@@ -1,0 +1,23 @@
+<p>
+  <b>Titre:</b>
+  <%=h @promo_generale.titre %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @promo_generale.description %>
+</p>
+
+<p>
+  <b>Date debut:</b>
+  <%=h @promo_generale.date_debut %>
+</p>
+
+<p>
+  <b>Date fin:</b>
+  <%=h @promo_generale.date_fin %>
+</p>
+
+
+<%= link_to 'Edit', edit_promo_generale_path(@promo_generale) %> |
+<%= link_to 'Back', promo_generales_path %>

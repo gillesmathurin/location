@@ -1,0 +1,26 @@
+<h1>Listing promo_generales</h1>
+
+<table>
+  <tr>
+    <th>Titre</th>
+    <th>Description</th>
+    <th>Date debut</th>
+    <th>Date fin</th>
+  </tr>
+
+<% @promo_generales.each do |promo_generale| %>
+  <tr>
+    <td><%=h promo_generale.titre %></td>
+    <td><%=h promo_generale.description %></td>
+    <td><%=h promo_generale.date_debut %></td>
+    <td><%=h promo_generale.date_fin %></td>
+    <td><%= link_to 'Show', promo_generale %></td>
+    <td><%= link_to 'Edit', edit_promo_generale_path(promo_generale) %></td>
+    <td><%= link_to 'Destroy', promo_generale, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New promo_generale', new_promo_generale_path %>

@@ -1,0 +1,28 @@
+<h1>Listing offre_promos</h1>
+
+<table>
+  <tr>
+    <th>Titre</th>
+    <th>Description</th>
+    <th>Date debut</th>
+    <th>Date fin</th>
+    <th>House</th>
+  </tr>
+
+<% @offre_promos.each do |offre_promo| %>
+  <tr>
+    <td><%=h offre_promo.titre %></td>
+    <td><%=h offre_promo.description %></td>
+    <td><%=h offre_promo.date_debut %></td>
+    <td><%=h offre_promo.date_fin %></td>
+    <td><%=h offre_promo.house_id %></td>
+    <td><%= link_to 'Show', offre_promo %></td>
+    <td><%= link_to 'Edit', edit_offre_promo_path(offre_promo) %></td>
+    <td><%= link_to 'Destroy', offre_promo, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New offre_promo', new_offre_promo_path %>

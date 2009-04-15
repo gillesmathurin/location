@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :offre_promos
+
+  map.resources :promo_generales
+
   map.resources :prospects
 
   

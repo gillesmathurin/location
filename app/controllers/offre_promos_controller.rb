@@ -1,4 +1,6 @@
 class OffrePromosController < ApplicationController
+  before_filter :find_house
+  
   # GET /offre_promos
   # GET /offre_promos.xml
   def index
@@ -24,7 +26,11 @@ class OffrePromosController < ApplicationController
   # GET /offre_promos/new
   # GET /offre_promos/new.xml
   def new
-    @offre_promo = OffrePromo.new
+    if @house
+      @offre_promo = @house.offre_promos.build(:house_id => @house.id)
+    else
+      @offre_promo = OffrePromo.new
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -81,5 +87,11 @@ class OffrePromosController < ApplicationController
       format.html { redirect_to(offre_promos_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  protected
+  
+  def find_house
+    @house = House.find(params[:house_id]) if params[:house_id]
   end
 end

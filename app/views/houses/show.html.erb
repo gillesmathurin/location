@@ -1,3 +1,13 @@
+<div id="promotions">
+  <% if !@offres.blank? %>
+  <ul>
+    <% for offre in @offres %>
+      <li><%= offre.titre %> <%= offre.description %> jusqu'au <%= offre.date_fin.strftime("%d/%m/%Y") %></li>
+    <% end %>
+  </ul>
+  <% end %>
+</div>
+
 <div id="titre">
   
   <div class"nom_house">

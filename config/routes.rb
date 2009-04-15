@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :houses , :collection => { :sort => :post },
    :member => { :search_availability => :post },
-   :has_many => :locations
+   :has_many => [:locations, :offre_promos]
   
   map.resources :locations, :collection => { :search => :post }
   

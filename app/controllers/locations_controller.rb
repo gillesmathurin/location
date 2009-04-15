@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
-  before_filter :find_house, :login_required
+  before_filter :find_house
+  before_filter :login_required, :only => [:new, :edit, :create, :update, :destroy]
   
   # GET /locations
   # GET /locations.xml

@@ -1,7 +1,13 @@
 <h1>Nos logements en location</h1>
 
 <div id="offres">
-  <!-- TODO : insérer le bloc de promotion -->
+  <% unless @promo.nil? %>
+    <p><%= @promo.titre %><br/>
+    </p>
+    <p>
+      <%= @promo.description %>
+    </p>
+  <% end %>
 </div>
 
 <div id="bienvenue">

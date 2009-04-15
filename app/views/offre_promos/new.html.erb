@@ -1,31 +1,13 @@
-<h1>New offre_promo</h1>
+<h1>Nouvelle Offre Promotionnelle</h1>
 
 <% form_for(@offre_promo) do |f| %>
   <%= f.error_messages %>
 
+  <%= render :partial => 'form', :locals => { :f => f } %>
+
   <p>
-    <%= f.label :titre %><br />
-    <%= f.text_field :titre %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :date_debut %><br />
-    <%= f.date_select :date_debut %>
-  </p>
-  <p>
-    <%= f.label :date_fin %><br />
-    <%= f.date_select :date_fin %>
-  </p>
-  <p>
-    <%= f.label :house_id %><br />
-    <%= f.text_field :house_id %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Enregistrer' %>
   </p>
 <% end %>
 
-<%= link_to 'Back', offre_promos_path %>
+<%= link_to 'Retour', house_offre_promos_path(@house) %>

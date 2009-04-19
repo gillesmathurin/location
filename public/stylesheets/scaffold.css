@@ -1,4 +1,15 @@
-body { background-color: #fff; color: #333; }
+body { background-color: #fff; color: #333;
+	width: 1004px;
+}
+
+html {
+	width: 1024px;
+	height: 768px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: 10px;
+	padding-left: 10px;
+}
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -52,3 +63,86 @@ a:hover { color: #fff; background-color:#000; }
   list-style: square;
 }
 
+#header {
+	width: 1004px;
+	background-color: #4690d7;
+	height: 100px;
+}
+
+#container{
+  background-color: white;
+  overflow:hidden;
+  width: 1004px;
+}
+#content{
+  background-color:#0ff;
+  border-right: 150px solid #464a55;
+  /* The width and color of the rail */
+  margin-right: -300px; /* Hat tip to Ryan Brill */
+  float:left;
+	width: 824px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	margin-top: 0;
+}
+#sidecol{
+  background-color:#f00;
+  width: 300px;
+  float:left;
+}
+
+#footer {
+	position: relative;
+	background-color: #ffd900;
+	width: 1004px;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* @group Show Page */
+
+#promotions {
+	
+}
+
+#titre {
+	
+}
+
+#titre .nom_house {
+	
+}
+
+#titre .infos_house {
+	
+}
+
+#photos {
+	
+}
+
+#photos #overview {
+	
+}
+
+#photos #tableau_photos {
+	
+}
+
+#description {
+	
+}
+
+#formulaire {
+	
+}
+
+#section_admin {
+	
+}
+
+
+
+/* @end */

@@ -10,23 +10,23 @@
 </head>
 <body>
   <div id="header">
-    
+    This is the header
   </div>
   
-  <div id="content">
-    <p style="color: green"><%= flash[:notice] %></p>
+  <div id="container">
     
-    <div id="maincol">
+    <div id="content">
+      <p style="color: green"><%= flash[:notice] %></p>
       <%= yield %>
     </div>
     
     <div id="sidecol">
-      
+      This is the side col
     </div>
   </div>
 
   <div id="footer">
-    
+    This is the footer
   </div>
 
 </body>

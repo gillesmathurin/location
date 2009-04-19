@@ -101,7 +101,7 @@ a:hover { color: #fff; background-color:#000; }
 	margin-left: auto;
 }
 
-/* @group Show Page */
+/* @group Houses */
 
 #promotions {
 	
@@ -140,6 +140,32 @@ a:hover { color: #fff; background-color:#000; }
 }
 
 #section_admin {
+	
+}
+
+#bienvenue {
+	
+}
+
+#logements {
+	
+}
+
+#houses {
+	
+}
+
+#houses li {
+	
+}
+
+
+
+/* @end */
+
+/* @group General */
+
+#offres {
 	
 }
 

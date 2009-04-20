@@ -1,14 +1,14 @@
-<h1>Editing tarif</h1>
+<h1>Modifier un tarif</h1>
 
 <% form_for(@tarif) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :days_nb %><br />
+    <%= f.label "Nb de Jours" %><br />
     <%= f.text_field :days_nb %>
   </p>
   <p>
-    <%= f.label :price %><br />
+    <%= f.label "Prix" %><br />
     <%= f.text_field :price %>
   </p>
   <p>
@@ -16,9 +16,9 @@
     <%= f.text_field :nom %>
   </p>
   <p>
-    <%= f.submit 'Update' %>
+    <%= f.submit 'Mettre à jour' %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @tarif %> |
-<%= link_to 'Back', tarifs_path %>
+<%= link_to 'Voir', @tarif %> |
+<%= link_to 'Retour', tarifs_path %>

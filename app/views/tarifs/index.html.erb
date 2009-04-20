@@ -1,9 +1,9 @@
-<h1>Listing tarifs</h1>
+<h1>Listing des tarifs</h1>
 
 <table>
   <tr>
-    <th>Days nb</th>
-    <th>Price</th>
+    <th>Nb de Jours</th>
+    <th>Prix</th>
     <th>Nom</th>
   </tr>
 
@@ -12,13 +12,13 @@
     <td><%=h tarif.days_nb %></td>
     <td><%=h tarif.price %></td>
     <td><%=h tarif.nom %></td>
-    <td><%= link_to 'Show', tarif %></td>
-    <td><%= link_to 'Edit', edit_tarif_path(tarif) %></td>
-    <td><%= link_to 'Destroy', tarif, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Voir', tarif %></td>
+    <td><%= link_to 'Modifier', edit_tarif_path(tarif) %></td>
+    <td><%= link_to 'Supprimer', tarif, :confirm => 'Etes vous certain ?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New tarif', new_tarif_path %>
+<%= link_to 'Nouveau tarif', new_tarif_path %>

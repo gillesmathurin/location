@@ -101,6 +101,16 @@ a:hover { color: #fff; background-color:#000; }
 	margin-left: auto;
 }
 
+/* @group General */
+
+#offres {
+	
+}
+
+
+
+/* @end */
+
 /* @group Houses */
 
 #promotions {
@@ -163,9 +173,25 @@ a:hover { color: #fff; background-color:#000; }
 
 /* @end */
 
-/* @group General */
+/* @group Locations */
 
-#offres {
+#house_summary {
+	
+}
+
+#date_reservation {
+	
+}
+
+#info_client {
+	
+}
+
+#search {
+	
+}
+
+#listing {
 	
 }
 

@@ -1,4 +1,4 @@
-<h1>Listing categories</h1>
+<h1>Listing des categories</h1>
 
 <table>
   <tr>
@@ -8,13 +8,13 @@
 <% @categories.each do |category| %>
   <tr>
     <td><%=h category.nom %></td>
-    <td><%= link_to 'Show', category %></td>
-    <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Voir', category %></td>
+    <td><%= link_to 'Modifier', edit_category_path(category) %></td>
+    <td><%= link_to 'Supprimer', category, :confirm => 'Etes vous certain ?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New category', new_category_path %>
+<%= link_to 'Nouvelle categorie', new_category_path %>

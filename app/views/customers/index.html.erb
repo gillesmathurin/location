@@ -1,4 +1,4 @@
-<h1>Listing customers</h1>
+<h1>Listing des clients</h1>
 
 <table>
   <tr>
@@ -22,13 +22,13 @@
     <td><%=h customer.telephone %></td>
     <td><%=h customer.email %></td>
     <td><%=h customer.fax %></td>
-    <td><%= link_to 'Show', customer %></td>
-    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-    <td><%= link_to 'Destroy', customer, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Voir', customer %></td>
+    <td><%= link_to 'Modifier', edit_customer_path(customer) %></td>
+    <td><%= link_to 'Supprimer', customer, :confirm => 'Etes vous certain?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New customer', new_customer_path %>
+<%= link_to 'Nouveau client', new_customer_path %>

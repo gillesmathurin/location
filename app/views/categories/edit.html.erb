@@ -1,4 +1,4 @@
-<h1>Editing category</h1>
+<h1>Modifier une categorie</h1>
 
 <% form_for(@category) do |f| %>
   <%= f.error_messages %>
@@ -8,9 +8,9 @@
     <%= f.text_field :nom %>
   </p>
   <p>
-    <%= f.submit 'Update' %>
+    <%= f.submit 'Mettre à jour' %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @category %> |
-<%= link_to 'Back', categories_path %>
+<%= link_to 'Voir', @category %> |
+<%= link_to 'Retour', categories_path %>

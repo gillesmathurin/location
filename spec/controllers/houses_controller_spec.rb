@@ -43,12 +43,17 @@ describe HousesController do
     
     before(:each) do
       @locations_prox = mock('locations')
+      @offre_promos_prox = mock('offre_promos')
     end
 
-    it "exposes the requested house as @house" do
+    it "exposes the requested house as @house, it's future reservation as @reservations" do
       House.should_receive(:find).with("37").and_return(mock_house)
       mock_house.should_receive(:locations).and_return(@locations_prox)
       @locations_prox.should_receive(:to_come)
+      # may have to return the related offre_promos
+      mock_house.stub!(:offre_promos).and_return(@offre_promos_prox)
+      @offre_promos_prox.stub!(:empty?)
+      @offre_promos_prox.stub!(:valid)
       get :show, :id => "37"
       assigns[:house].should equal(mock_house)
     end
@@ -59,6 +64,11 @@ describe HousesController do
         House.should_receive(:find).with("37").and_return(mock_house)
         mock_house.should_receive(:locations).and_return(@locations_prox)
         @locations_prox.should_receive(:to_come)
+        # may have to return the related offre_promos
+        mock_house.stub!(:offre_promos).and_return(@offre_promos_prox)
+        @offre_promos_prox.stub!(:empty?)
+        @offre_promos_prox.stub!(:valid)
+        
         mock_house.should_receive(:to_xml).and_return("generated XML")
         get :show, :id => "37", :format => 'xml'
         response.body.should == "generated XML"

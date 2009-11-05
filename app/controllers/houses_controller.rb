@@ -18,7 +18,7 @@ class HousesController < ApplicationController
   def show
     @house = House.find(params[:id])
     @reservations = @house.locations.to_come
-    @offres = @house.offre_promos.valid
+    @offres = @house.offre_promos.valid unless @house.offre_promos.empty?
 
     respond_to do |format|
       format.html # show.html.erb
